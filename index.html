@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MUSTAPHA FARUQ ADEYEMI — Frontend Developer & Graphics Designer</title>
+  <meta name="description" content="Frontend Developer & Graphics Designer — builds modern responsive websites and memorable visuals."/>
+  <link rel="icon" href="data:," /> <!-- replace with favicon if you have one -->
+
+  <!-- Basic reset + readable type scale -->
+  <style>
+    :root{
+      --bg:#0f1724; /* dark slate */
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#7dd3fc; /* cyan-ish */
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --max-width:1100px;
+      --ff-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff-sans);
+      background: linear-gradient(180deg, #071024 0%, var(--bg) 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#60a5fa);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#022;
+      font-weight:700;
+      font-size:18px;
+      box-shadow:0 6px 18px rgba(125,211,252,0.08), inset 0 -4px 8px rgba(255,255,255,0.02);
+    }
+
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:18px;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    nav a:hover{color:var(--accent)}
+
+    /* hero */
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:center;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+      margin-bottom:28px;
+    }
+
+    .hero .intro h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing:-0.3px;
+    }
+
+    .tagline{
+      margin:0 0 14px 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .bio{
+      margin:0 0 18px 0;
+      color:#d6e6fb;
+    }
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:var(--glass);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .btn.alt{
+      background:transparent;
+      color:var(--muted);
+      border:1px dashed rgba(255,255,255,0.03);
+      font-weight:600;
+    }
+
+    .portrait{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:12px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      box-shadow:inset 0 -6px 12px rgba(0,0,0,0.4);
+    }
+
+    .portrait img{
+      width:100%;
+      max-width:220px;
+      border-radius:10px;
+      display:block;
+    }
+
+    /* sections */
+    section{
+      margin-bottom:28px;
+    }
+
+    .section-header{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .section-header h2{
+      margin:0;
+      font-size:18px;
+    }
+
+    .skills{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .skill-group{
+      min-width:220px;
+      background:var(--card);
+      padding:12px;
+      border-radius:12px;
+    }
+
+    .skill-list{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+
+    .pill{
+      background:rgba(255,255,255,0.03);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Projects grid */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .project{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:12px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      box-shadow:0 8px 18px rgba(2,6,23,0.6);
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+
+    .project:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(2,6,23,0.7) }
+
+    .project img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .project-body{
+      padding:12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+
+    .project-title{
+      font-weight:700;
+      font-size:15px;
+      margin:0;
+    }
+
+    .project-desc{
+      color:var(--muted);
+      font-size:13px;
+      margin:0;
+    }
+
+    .project-meta{
+      margin-top:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+
+    .meta-left{display:flex; gap:8px; flex-wrap:wrap;}
+
+    .project a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    /* design gallery - horizontal */
+    .design-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+
+    .design-thumb{
+      border-radius:10px;
+      overflow:hidden;
+      min-height:120px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      cursor:pointer;
+    }
+
+    .design-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+
+    /* contact */
+    .contact-card{
+      padding:18px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .contact-left{display:flex; gap:12px; align-items:center}
+    .contact-left a{color:var(--accent); text-decoration:none; font-weight:700}
+
+    /* footer */
+    footer{
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      padding:18px 0;
+    }
+
+    /* lightbox modal */
+    .overlay{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,0.7);
+      z-index:1200;
+      padding:28px;
+    }
+
+    .overlay.active{display:flex}
+    .lightbox{
+      max-width:1100px;
+      width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      background:#071326;
+      box-shadow:0 30px 80px rgba(2,6,23,0.85);
+    }
+
+    .lightbox img{width:100%; height:auto; display:block}
+
+    .lightbox .lb-meta{
+      padding:12px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color:var(--muted);
+    }
+
+    .close-btn{
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    /* responsive */
+    @media (max-width:1000px){
+      .hero{ grid-template-columns: 1fr 280px }
+      .projects-grid{ grid-template-columns: repeat(2, 1fr) }
+      .design-grid{ grid-template-columns: repeat(3, 1fr) }
+    }
+
+    @media (max-width:700px){
+      body{padding:18px}
+      header{flex-direction:column; align-items:flex-start; gap:12px}
+      .hero{ grid-template-columns:1fr; padding:18px }
+      .portrait{ order: -1; justify-content:flex-start }
+      .projects-grid{ grid-template-columns: 1fr }
+      .design-grid{ grid-template-columns: repeat(2, 1fr) }
+      nav{ width:100%; display:flex; gap:10px; flex-wrap:wrap }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">MA</div>
+        <div>
+          <div style="font-weight:800">MUSTAPHA FARUQ ADEYEMI</div>
+          <div style="color:var(--muted); font-size:13px; margin-top:6px">Frontend Developer & Graphics Designer</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#designs">Designs</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="intro-heading">
+      <div class="intro">
+        <h1 id="intro-heading">Hi — I'm Mustapha. I build beautiful web experiences & striking visuals.</h1>
+        <p class="tagline">I’m a Frontend Developer and Graphics Designer who creates clean, responsive websites and memorable brand visuals.</p>
+        <p class="bio">I combine an eye for design with robust front-end code to deliver websites that look great and perform well on every device. I love building landing pages, dashboards, and brand assets for startups and creators.</p>
+
+        <div class="cta" role="region" aria-label="Call to action">
+          <a class="btn" href="#projects">View My Work</a>
+          <a class="btn alt" href="#contact">Hire Me</a>
+          <a class="btn alt" href="Document.PDF" target="_blank" rel="noopener">Download CV</a>
+        </div>
+      </div>
+
+      <aside class="portrait" aria-label="portrait">
+        <!-- Replace with your photo or illustration -->
+        <img src="image.jpg"
+             alt="Portrait — replace with your photo" />
+      </aside>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-heading">
+      <div class="section-header">
+        <h2 id="skills-heading">Skills</h2>
+        <div style="color:var(--muted); font-size:13px">Frontend • Design • Tools</div>
+      </div>
+
+      <div class="skills">
+        <div class="skill-group">
+          <strong>Frontend</strong>
+          <div class="skill-list" aria-hidden="false">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Responsive</span>
+            <span class="pill">React</span>
+            <span class="pill">Git</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Graphics Design</strong>
+          <div class="skill-list">
+            <span class="pill">Figma</span>
+            <span class="pill">Adobe Photoshop</span>
+            <span class="pill">Illustrator</span>
+            <span class="pill">Branding</span>
+            <span class="pill">Social Graphics</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <strong>Other Tools</strong>
+          <div class="skill-list">
+            <span class="pill">VS Code</span>
+            <span class="pill">Tailwind</span>
+            <span class="pill">Bootstrap</span>
+            <span class="pill">Sass</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="section-header">
+        <h2 id="projects-heading">Featured Frontend Projects</h2>
+        <div style="color:var(--muted); font-size:13px">Live demos & source</div>
+      </div>
+
+      <div class="projects-grid" role="list">
+        <!-- Project 1 -->
+        <article class="project" role="listitem" aria-labelledby="p1-title">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project preview — e-commerce landing">
+          <div class="project-body">
+            <h3 id="p1-title" class="project-title">E-Com Landing</h3>
+            <p class="project-desc">Responsive product landing page with animations and accessible markup.</p>
+            <div class="project-meta">
+              <div class="meta-left">
+                <span class="pill">HTML</span>
+                <span class="pill">CSS</span>
+                <span class="pill">JS</span>
+              </div>
+              <div>
+                <a href="https://adyem051.github.io/Recipepage/" target="https://adyem051.github.io/Recipepage/">Live</a> · <a href="https://github.com/adyem051/Profile-link-2.git" target="https://github.com/adyem051/Profile-link-2.git">Code</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project" role="listitem" aria-labelledby="p2-title">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project preview — dashboard UI">
+          <div class="project-body">
+            <h3 id="p2-title" class="project-title">Admin Dashboard</h3>
+            <p class="project-desc">Interactive dashboard UI built with reusable components and charts.</p>
+            <div class="project-meta">
+              <div class="meta-left">
+                <span class="pill">React</span>
+                <span class="pill">Tailwind</span>
+              </div>
+              <div>
+                <a href="#" target="_blank" rel="noopener">Live</a> · <a href="#" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project" role="listitem" aria-labelledby="p3-title">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Project preview — portfolio site">
+          <div class="project-body">
+            <h3 id="p3-title" class="project-title">Portfolio Website</h3>
+            <p class="project-desc">A minimal, accessible portfolio with smooth scroll and responsive layout.</p>
+            <div class="project-meta">
+              <div class="meta-left">
+                <span class="pill">HTML</span>
+                <span class="pill">CSS</span>
+              </div>
+              <div>
+                <a href="https://adyem051.github.io/Product-view-card-/" target="https://github.com/adyem051/Product-view-card-.git">Live</a> · <a href="https://github.com/adyem051/Product-view-card-.git" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Add more projects by duplicating the .project block -->
+      </div>
+    </section>
+
+    <!-- DESIGNS -->
+    <section id="designs" aria-labelledby="designs-heading">
+      <div class="section-header">
+        <h2 id="designs-heading">Design Samples</h2>
+        <div style="color:var(--muted); font-size:13px">Logos • Social • UI mockups</div>
+      </div>
+
+      <div class="design-grid" role="list">
+        <!-- Each thumb opens the lightbox -->
+        <div class="design-thumb" role="listitem" tabindex="0" data-title="Brand Logo — Clean Mark" data-src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+          <img src="IMG.jpg" alt="Brand logo sample">
+        </div>
+
+        <div class="design-thumb" role="listitem" tabindex="0" data-title="Social Post — Promo" data-src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+          <img src="IMG2.jpg" alt="Social promo sample">
+        </div>
+
+        <div class="design-thumb" role="listitem" tabindex="0" data-title="App UI — Light Dashboard" data-src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+          <img src="IMG3.jpg" alt="Dashboard UI mockup">
+        </div>
+
+        <div class="design-thumb" role="listitem" tabindex="0" data-title="Flyer — Event Promo" data-src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder">
+          <img src="IMG4.jpg" alt="Event flyer sample">
+        </div>
+
+        <!-- Add more thumbs -->
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="section-header">
+        <h2 id="contact-heading">Contact</h2>
+        <div style="color:var(--muted); font-size:13px">Available for freelance & full-time</div>
+      </div>
+
+      <div class="contact-card" role="region" aria-label="Contact">
+        <div class="contact-left">
+          <div style="font-weight:700">Let’s build something great —</div>
+          <div style="color:var(--muted)">Email me at</div>
+          <a href="mailto:youremail@example.com">mustaphafaruq2015@gmail.com</a>
+        </div>
+
+        <div style="text-align:right">
+          <div style="color:var(--muted); margin-bottom:8px">Or reach out on:</div>
+          <div style="display:flex; gap:8px; justify-content:flex-end">
+            <a class="btn alt" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn alt" href="https://wa.me/+2349017276436" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn alt" href="https://x.com/Adeyemicrypt" target="_blank" rel="noopener">Twitter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Mustapha Faruq Adeyemi — Built with ❤️ • <a href="#contact" style="color:var(--muted); text-decoration:underline">Hire me</a>
+    </footer>
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div class="overlay" id="overlay" role="dialog" aria-hidden="true" aria-label="Image preview">
+    <div class="lightbox" role="document">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lb-meta">
+        <div id="lightbox-title" style="font-weight:700"></div>
+        <button class="close-btn" id="lightbox-close" aria-label="Close preview">Close ✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // small scripts: update year, open lightbox on design thumbs, keyboard close
+    (function(){
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Lightbox elements
+      const overlay = document.getElementById('overlay');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbTitle = document.getElementById('lightbox-title');
+      const closeBtn = document.getElementById('lightbox-close');
+
+      function openLightbox(src, title){
+        lbImg.src = src;
+        lbImg.alt = title || 'Design sample';
+        lbTitle.textContent = title || '';
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden','false');
+        // trap focus simply by focusing the close button
+        closeBtn.focus();
+      }
+
+      function closeLightbox(){
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        lbTitle.textContent = '';
+      }
+
+      // attach to thumbs
+      const thumbs = document.querySelectorAll('.design-thumb');
+      thumbs.forEach(t => {
+        function handler(){
+          const src = t.getAttribute('data-src');
+          const title = t.getAttribute('data-title');
+          openLightbox(src, title);
+        }
+        t.addEventListener('click', handler);
+        t.addEventListener('keypress', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') handler();
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', (e) => {
+        // close when clicking outside the lightbox content
+        if(e.target === overlay) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+      });
+
+      // Make external links open safely (already have target="_blank" where used)
+    })();
+  </script>
+</body>
+</html>
